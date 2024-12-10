@@ -1,5 +1,11 @@
 package com.generation.deliveygeneration.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.generation.deliveygeneration.repository.ProdutoRepository;
+
+
 import com.generation.deliveygeneration.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +16,7 @@ import com.generation.deliveygeneration.repository.ProdutoRepository;
 
 import java.util.List;
 
+
 @Service
 public class ProdutoService {
 
@@ -17,7 +24,9 @@ public class ProdutoService {
     private ProdutoRepository produtoRepository;
 
 
+
 	public List<Produto> findAll() {
 		return produtoRepository.findAll();
 	}
+
 }
