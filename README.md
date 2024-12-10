@@ -2,7 +2,7 @@
 
 ## 📝 Descrição  
 Esta é uma **API REST** para um sistema de **delivery de comida**. O sistema gerencia:
-- **Usuários**, que podem realizar pedidos.
+- **Usuários**, que podem ter produtos.
 - **Produtos** (itens disponíveis para compra).
 - **Categorias**, que classificam os produtos.
 
@@ -38,12 +38,12 @@ erDiagram
         String nome
         String descricao
         Long valor
+        Boolean saudavel
     }
     CATEGORIA {
         Long id
         String nome
         String descricao
-        Boolean saudavel
     }
     USUARIO ||--o{ PRODUTO : pedidos
     PRODUTO }o--|| CATEGORIA : pertence
@@ -62,7 +62,7 @@ Representa os usuários do sistema, que podem realizar pedidos.
 - `email (String)`: Endereço de e-mail do usuário.  
 - `foto (String)`: URL da foto do usuário.  
 - `senha (String)`: Senha para autenticação.  
-- `pedidos (List<Produto>)`: Lista de produtos pedidos pelo usuário.  
+- `produtos (List<Produto>)`: Lista de produtos do usuário.  
 
 **Relacionamento**:  
 - Um usuário pode ter vários produtos no histórico de pedidos.  
@@ -74,7 +74,8 @@ Representa os itens disponíveis para entrega.
 - `nome (String)`: Nome do produto.  
 - `descricao (String)`: Descrição detalhada do produto.  
 - `valor (Long)`: Preço do produto.  
-- `categoria (Categoria)`: Categoria a que o produto pertence.  
+- `categoria (Categoria)`: Categoria a que o produto pertence.
+- `saudavel (Boolean)`: Indica se a categoria é saudável ou não.  
 
 **Relacionamento**:  
 - Um produto pertence a uma categoria.  
@@ -85,7 +86,6 @@ Classifica os produtos, como "Bebidas", "Sobremesas" ou "Pratos Principais".
 - `id (Long)`: Identificador único.  
 - `nome (String)`: Nome da categoria.  
 - `descricao (String)`: Descrição detalhada da categoria.  
-- `saudavel (Boolean)`: Indica se a categoria é saudável ou não.  
 - `produtos (List<Produto>)`: Lista de produtos na categoria.  
 
 **Relacionamento**:  
@@ -126,7 +126,7 @@ Classifica os produtos, como "Bebidas", "Sobremesas" ou "Pratos Principais".
 | POST        | `/usuarios`       | Cadastrar novo usuário         |
 | GET         | `/usuarios`       | Listar todos os usuários       |
 | GET         | `/usuarios/{id}`  | Buscar usuário por ID          |
-| PUT         | `/usuarios/{id}`  | Atualizar usuário por ID       |
+| PUT         | `/usuarios`       | Atualizar usuário por ID       |
 | DELETE      | `/usuarios/{id}`  | Remover usuário por ID         |
 
 ### **Produto**
@@ -135,7 +135,7 @@ Classifica os produtos, como "Bebidas", "Sobremesas" ou "Pratos Principais".
 | POST        | `/produtos`       | Adicionar novo produto         |
 | GET         | `/produtos`       | Listar todos os produtos       |
 | GET         | `/produtos/{id}`  | Buscar produto por ID          |
-| PUT         | `/produtos/{id}`  | Atualizar produto por ID       |
+| PUT         | `/produtos`       | Atualizar produto por ID       |
 | DELETE      | `/produtos/{id}`  | Remover produto por ID         |
 
 ### **Categoria**
@@ -144,7 +144,7 @@ Classifica os produtos, como "Bebidas", "Sobremesas" ou "Pratos Principais".
 | POST        | `/categorias`     | Adicionar nova categoria       |
 | GET         | `/categorias`     | Listar todas as categorias     |
 | GET         | `/categorias/{id}`| Buscar categoria por ID        |
-| PUT         | `/categorias/{id}`| Atualizar categoria por ID     |
+| PUT         | `/categorias`     | Atualizar categoria por ID     |
 | DELETE      | `/categorias/{id}`| Remover categoria por ID       |
 
 ### **Recomendação**
