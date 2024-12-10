@@ -1,6 +1,5 @@
 package com.generation.deliveygeneration.model;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -26,7 +25,7 @@ public class Categoria {
 
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "categoria", cascade = CascadeType.REMOVE)
-    @JsonIgnoreProperties
+    @JsonIgnoreProperties("categoria")
     private List<Produto> produtos;
 
     public long getId() {

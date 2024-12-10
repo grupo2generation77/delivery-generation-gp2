@@ -32,7 +32,7 @@ public class Produto {
     private Categoria categoria;
 
     @ManyToOne
-    @JsonIgnore
+    @JsonIgnoreProperties("produtos")
     private Usuario usuario;
 
     public long getId() {

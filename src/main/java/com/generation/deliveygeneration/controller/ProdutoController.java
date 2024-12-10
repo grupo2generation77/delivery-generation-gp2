@@ -4,7 +4,6 @@ import com.generation.deliveygeneration.model.Produto;
 
 import com.generation.deliveygeneration.repository.ProdutoRepository;
 import java.util.Optional;
-import com.generation.deliveygeneration.repository.ProdutoRepository;
 import com.generation.deliveygeneration.service.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,14 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import com.generation.deliveygeneration.model.Usuario;
 
-import com.generation.deliveygeneration.repository.ProdutoRepository;
-import com.generation.deliveygeneration.service.ProdutoService;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

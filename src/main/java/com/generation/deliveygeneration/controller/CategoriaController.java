@@ -17,13 +17,11 @@ import org.springframework.web.server.ResponseStatusException;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.http.ResponseEntity;
-import com.generation.deliveygeneration.model.Categoria;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/categorias")
@@ -70,4 +68,3 @@ public class CategoriaController {
         categoriaRepository.deleteById(id);    
     }
 }
-
