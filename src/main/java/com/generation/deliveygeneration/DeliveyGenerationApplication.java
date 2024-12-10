@@ -9,5 +9,4 @@ public class DeliveyGenerationApplication {
     public static void main(String[] args) {
         SpringApplication.run(DeliveyGenerationApplication.class, args);
     }
-
 }
