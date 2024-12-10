@@ -33,6 +33,11 @@ public class CategoriaController {
     @Autowired
     private CategoriaRepository categoriaRepository;
 
+
+    @Autowired
+    private CategoriaService categoriaService;
+
+
     @GetMapping
     public ResponseEntity<List<Categoria>> getAllCategorias() {
     	List<Categoria> categorias = categoriaRepository.findAll();
