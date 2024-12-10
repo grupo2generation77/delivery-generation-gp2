@@ -1,6 +1,5 @@
 package com.generation.deliveygeneration.model;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -11,6 +10,7 @@ import java.util.List;
 @Entity
 @Table(name = "tb_categorias")
 public class Categoria {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -23,10 +23,9 @@ public class Categoria {
     @Size(min = 2, max = 100)
     private String descricao;
 
-    private boolean saudavel;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "categoria", cascade = CascadeType.REMOVE)
-    @JsonIgnoreProperties
+    @JsonIgnoreProperties("categoria")
     private List<Produto> produtos;
 
     public long getId() {
@@ -51,14 +50,6 @@ public class Categoria {
 
     public void setDescricao(@NotBlank @Size(min = 2, max = 100) String descricao) {
         this.descricao = descricao;
-    }
-
-    public boolean isSaudavel() {
-        return saudavel;
-    }
-
-    public void setSaudavel(boolean saudavel) {
-        this.saudavel = saudavel;
     }
 
     public List<Produto> getProdutos() {
