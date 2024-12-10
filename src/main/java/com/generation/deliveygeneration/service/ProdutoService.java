@@ -22,4 +22,8 @@ public class ProdutoService {
         return produtoRepository.findAll();
     }
 
+    public List<Produto> findAllSaudaveis() {
+        return produtoRepository.findAllBySaudavelTrue();
+    }
+
 }

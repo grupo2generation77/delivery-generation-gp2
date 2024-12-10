@@ -38,7 +38,7 @@ public class ProdutoController {
 
     @GetMapping("/saudaveis")
     public ResponseEntity <List<Produto>> saudaveis(){
-        return ResponseEntity.ok(produtoRepository.findAllBySaudavelTrue());
+        return ResponseEntity.ok(produtoService.findAllSaudaveis());
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
