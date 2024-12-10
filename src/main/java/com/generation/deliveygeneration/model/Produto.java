@@ -25,6 +25,8 @@ public class Produto {
     @NotNull
     private long valor;
 
+    private boolean saudavel;
+
     @ManyToOne
     @JsonIgnoreProperties("produtos")
     private Categoria categoria;
@@ -64,6 +66,14 @@ public class Produto {
 
     public void setValor(@NotNull long valor) {
         this.valor = valor;
+    }
+
+    public boolean isSaudavel() {
+        return saudavel;
+    }
+
+    public void setSaudavel(boolean saudavel) {
+        this.saudavel = saudavel;
     }
 
     public Categoria getCategoria() {
