@@ -1,5 +1,7 @@
 package com.generation.deliveygeneration.service;
 
+import com.generation.deliveygeneration.repository.CategoriaRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import com.generation.deliveygeneration.model.Categoria;
 import com.generation.deliveygeneration.repository.CategoriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,13 +11,14 @@ import java.util.List;
 
 @Service
 public class CategoriaService{
-	
+
 	@Autowired
 	private CategoriaRepository categoriaRepository;
-	
+
 	public List<Categoria> findAll() {
 		return categoriaRepository.findAll();
 	}
+	
 
 
 

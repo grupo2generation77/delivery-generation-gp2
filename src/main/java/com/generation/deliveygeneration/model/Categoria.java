@@ -11,6 +11,7 @@ import java.util.List;
 @Entity
 @Table(name = "tb_categorias")
 public class Categoria {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -23,7 +24,6 @@ public class Categoria {
     @Size(min = 2, max = 100)
     private String descricao;
 
-    private boolean saudavel;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "categoria", cascade = CascadeType.REMOVE)
     @JsonIgnoreProperties
@@ -51,14 +51,6 @@ public class Categoria {
 
     public void setDescricao(@NotBlank @Size(min = 2, max = 100) String descricao) {
         this.descricao = descricao;
-    }
-
-    public boolean isSaudavel() {
-        return saudavel;
-    }
-
-    public void setSaudavel(boolean saudavel) {
-        this.saudavel = saudavel;
     }
 
     public List<Produto> getProdutos() {
