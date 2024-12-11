@@ -75,7 +75,7 @@ Representa os itens disponíveis para entrega.
 - `descricao (String)`: Descrição detalhada do produto.  
 - `valor (Long)`: Preço do produto.  
 - `categoria (Categoria)`: Categoria a que o produto pertence.
-- `saudavel (Boolean)`: Indica se a categoria é saudável ou não.  
+- `saudavel (Boolean)`: Indica se o produto é saudável ou não.  
 
 **Relacionamento**:  
 - Um produto pertence a uma categoria.  
