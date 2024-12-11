@@ -1,10 +1,8 @@
 package com.generation.deliveygeneration.controller;
 
 import com.generation.deliveygeneration.model.Produto;
-
 import com.generation.deliveygeneration.repository.ProdutoRepository;
 import java.util.Optional;
-import com.generation.deliveygeneration.repository.ProdutoRepository;
 import com.generation.deliveygeneration.service.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,14 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import com.generation.deliveygeneration.model.Usuario;
-
-import com.generation.deliveygeneration.repository.ProdutoRepository;
-import com.generation.deliveygeneration.service.ProdutoService;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -64,6 +55,15 @@ public class ProdutoController {
        return new ResponseEntity<>(produtoRepository.findAll(), HttpStatus.OK);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getById(@PathVariable Long id) {
+        Optional<Produto> produto = produtoRepository.findById(id);
+        if(produto.isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Id não encontrado");
+        }
+        return ResponseEntity.ok(produto.get());
+    }
+
     @PostMapping
     public ResponseEntity<Produto> salvar(@RequestBody @Valid Produto produto) {
        return ResponseEntity.status(HttpStatus.CREATED).body(produtoRepository.save(produto));
@@ -72,7 +72,7 @@ public class ProdutoController {
     @PutMapping
     public ResponseEntity<?> atualizarCategoria(@Valid @RequestBody Produto produto) {
         if(produtoRepository.existsById(produto.getId())) {
-            return ResponseEntity.status(HttpStatus.CREATED).body(produtoRepository.save(produto));
+            return ResponseEntity.status(HttpStatus.OK).body(produtoRepository.save(produto));
         }else{
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Id não encontrado");
         }

@@ -30,8 +30,8 @@ public class Usuario {
     private String senha;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario", cascade = CascadeType.REMOVE)
-    @JsonIgnoreProperties
-    private List<Produto> produtos;
+    @JsonIgnoreProperties("usuario")
+    private List<Pedido> pedidos;
 
     public long getId() {
         return id;
@@ -73,11 +73,11 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public List<Produto> getProdutos() {
-        return produtos;
+    public List<Pedido> getPedidos() {
+        return pedidos;
     }
 
-    public void setProdutos(List<Produto> produtos) {
-        this.produtos = produtos;
+    public void setPedidos(List<Pedido> pedidos) {
+        this.pedidos = pedidos;
     }
 }

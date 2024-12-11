@@ -1,11 +1,12 @@
 package com.generation.deliveygeneration.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+
+import java.util.List;
 
 @Entity
 @Table(name = "tb_produtos")
@@ -22,18 +23,18 @@ public class Produto {
     @Size(min = 2, max = 100)
     private String descricao;
 
-    @NotNull
-    private long valor;
+    @NotBlank
+    @Size(min = 2, max = 50)
+    private String categoria;
 
     private boolean saudavel;
 
-    @ManyToOne
-    @JsonIgnoreProperties("produtos")
-    private Categoria categoria;
+    @NotNull
+    private long valor;
 
-    @ManyToOne
-    @JsonIgnore
-    private Usuario usuario;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "produto")
+    @JsonIgnoreProperties({"usuario", "produto"})
+    private List<Pedido> pedidos;
 
     public long getId() {
         return id;
@@ -76,19 +77,19 @@ public class Produto {
         this.saudavel = saudavel;
     }
 
-    public Categoria getCategoria() {
+    public @NotBlank @Size(min = 2, max = 50) String getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(Categoria categoria) {
+    public void setCategoria(@NotBlank @Size(min = 2, max = 50) String categoria) {
         this.categoria = categoria;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public List<Pedido> getPedidos() {
+        return pedidos;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setPedidos(List<Pedido> pedidos) {
+        this.pedidos = pedidos;
     }
 }
