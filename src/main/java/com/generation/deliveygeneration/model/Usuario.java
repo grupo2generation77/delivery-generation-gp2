@@ -16,17 +16,18 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @NotBlank
-    @Size(min = 2, max = 50)
+    @NotBlank(message = "O Atributo Nome é Obrigatório!")
+    @Size(min = 2, max = 50, message = "Minimo de 2 caracteres maximo de 50")
     private String nome;
 
-    @NotBlank
-    @Email
+    @NotBlank(message = "O Atributo Usuário é Obrigatório!")
+    @Email(message = "O Atributo Usuário deve ser um email válido!")
     private String email;
 
     private String foto;
 
-    @NotBlank
+    @NotBlank(message = "O Atributo Senha é Obrigatório!")
+    @Size(message = "A Senha deve ter no mínimo 8 caracteres")
     private String senha;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario", cascade = CascadeType.REMOVE)
@@ -41,19 +42,19 @@ public class Usuario {
         this.id = id;
     }
 
-    public @NotBlank @Size(min = 2, max = 50) String getNome() {
+    public @NotBlank(message = "O Atributo Nome é Obrigatório!") @Size(min = 2, max = 50, message = "Minimo de 2 caracteres maximo de 50") String getNome() {
         return nome;
     }
 
-    public void setNome(@NotBlank @Size(min = 2, max = 50) String nome) {
+    public void setNome(@NotBlank(message = "O Atributo Nome é Obrigatório!") @Size(min = 2, max = 50, message = "Minimo de 2 caracteres maximo de 50") String nome) {
         this.nome = nome;
     }
 
-    public @NotBlank @Email String getEmail() {
+    public @NotBlank(message = "O Atributo Usuário é Obrigatório!") @Email(message = "O Atributo Usuário deve ser um email válido!") String getEmail() {
         return email;
     }
 
-    public void setEmail(@NotBlank @Email String email) {
+    public void setEmail(@NotBlank(message = "O Atributo Usuário é Obrigatório!") @Email(message = "O Atributo Usuário deve ser um email válido!") String email) {
         this.email = email;
     }
 
@@ -65,11 +66,11 @@ public class Usuario {
         this.foto = foto;
     }
 
-    public @NotBlank String getSenha() {
+    public @NotBlank(message = "O Atributo Senha é Obrigatório!") @Size(message = "A Senha deve ter no mínimo 8 caracteres") String getSenha() {
         return senha;
     }
 
-    public void setSenha(@NotBlank String senha) {
+    public void setSenha(@NotBlank(message = "O Atributo Senha é Obrigatório!") @Size(message = "A Senha deve ter no mínimo 8 caracteres") String senha) {
         this.senha = senha;
     }
 

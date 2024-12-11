@@ -51,16 +51,26 @@ public class UsuarioController {
     	return ResponseEntity.ok(usuarioService.findAll());
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getById(@PathVariable Long id) {
+        Optional<Usuario> usuario = usuarioRepository.findById(id);
+        if(usuario.isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Id não encontrado");
+        }
+        return ResponseEntity.ok(usuario.get());
+    }
+
+
     @PostMapping
-    public ResponseEntity<Usuario> save(@Valid @RequestBody Usuario usuario) {
-        return ResponseEntity.status(HttpStatus.CREATED)
+    public ResponseEntity<Usuario> postUsuario(@Valid @RequestBody Usuario usuario) {
+        return ResponseEntity.status(HttpStatus.OK)
                 .body(usuarioRepository.save(usuario));
     }
 
     @PutMapping
-    public ResponseEntity<?> atualizarCategoria(@Valid @RequestBody Usuario usuario) {
+    public ResponseEntity<?> updateCategoria(@Valid @RequestBody Usuario usuario) {
         if(usuarioRepository.existsById(usuario.getId())) {
-            return ResponseEntity.status(HttpStatus.CREATED).body(usuarioRepository.save(usuario));
+            return ResponseEntity.status(HttpStatus.OK).body(usuarioRepository.save(usuario));
         }else{
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Id não encontrado");
         }

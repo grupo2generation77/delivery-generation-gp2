@@ -38,20 +38,28 @@ public class CategoriaController {
 
     @GetMapping
     public ResponseEntity<List<Categoria>> getAllCategorias() {
-    	List<Categoria> categorias = categoriaRepository.findAll();
+    	List<Categoria> categorias = categoriaService.findAll();
     	return ResponseEntity.ok(categorias);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getById(@PathVariable Long id) {
+        Optional<Categoria> categoria = categoriaRepository.findById(id);
+        if(categoria.isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Id não encontrado");
+        }
+        return ResponseEntity.ok(categoria.get());
+    }
 
     @PostMapping
-    public ResponseEntity<Categoria> adicionaCategoria(@Valid @RequestBody Categoria categoria) {
+    public ResponseEntity<Categoria> postCategoria(@Valid @RequestBody Categoria categoria) {
         return ResponseEntity.status(HttpStatus.CREATED).body(categoriaRepository.save(categoria));
     }
 
     @PutMapping
     public ResponseEntity<?> updateCategoria(@Valid @RequestBody Categoria categoria) {
         if(categoriaRepository.findById(categoria.getId()).isPresent()) {
-            return ResponseEntity.status(HttpStatus.CREATED).body(categoriaRepository.save(categoria));
+            return ResponseEntity.status(HttpStatus.OK).body(categoriaRepository.save(categoria));
         }else{
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Id não encontrado");
         }

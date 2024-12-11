@@ -15,12 +15,12 @@ public class Categoria {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @NotBlank
-    @Size(min = 2, max = 50)
+    @NotBlank(message = "O Atributo Nome é obrigatorio!")
+    @Size(min = 2, max = 50,message = "minimo de 2 caracteres e maximo de 50")
     private String nome;
 
-    @NotBlank
-    @Size(min = 2, max = 100)
+    @NotBlank(message = "O Atributo Descricao é obrigatorio")
+    @Size(min = 2, max = 100,message = "minimo de 2 caracteres e maximo de 100")
     private String descricao;
 
 
@@ -36,19 +36,19 @@ public class Categoria {
         this.id = id;
     }
 
-    public @NotBlank @Size(min = 2, max = 50) String getNome() {
+    public @NotBlank(message = "O Atributo Nome é obrigatorio!") @Size(min = 2, max = 50, message = "minimo de 2 caracteres e maximo de 50") String getNome() {
         return nome;
     }
 
-    public void setNome(@NotBlank @Size(min = 2, max = 50) String nome) {
+    public void setNome(@NotBlank(message = "O Atributo Nome é obrigatorio!") @Size(min = 2, max = 50, message = "minimo de 2 caracteres e maximo de 50") String nome) {
         this.nome = nome;
     }
 
-    public @NotBlank @Size(min = 2, max = 100) String getDescricao() {
+    public @NotBlank(message = "O Atributo Descricao é obrigatorio") @Size(min = 2, max = 100, message = "minimo de 2 caracteres e maximo de 100") String getDescricao() {
         return descricao;
     }
 
-    public void setDescricao(@NotBlank @Size(min = 2, max = 100) String descricao) {
+    public void setDescricao(@NotBlank(message = "O Atributo Descricao é obrigatorio") @Size(min = 2, max = 100, message = "minimo de 2 caracteres e maximo de 100") String descricao) {
         this.descricao = descricao;
     }
 

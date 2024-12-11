@@ -37,7 +37,7 @@ public class ProdutoController {
 
 
     @GetMapping("/saudaveis")
-    public ResponseEntity <List<Produto>> saudaveis(){
+    public ResponseEntity <List<Produto>> getAllSaudaveis(){
         return ResponseEntity.ok(produtoService.findAllSaudaveis());
     }
 
@@ -54,19 +54,28 @@ public class ProdutoController {
     
 
     @GetMapping
-    public ResponseEntity<List<Produto>> findAll() {
-       return new ResponseEntity<>(produtoRepository.findAll(), HttpStatus.OK);
+    public ResponseEntity<List<Produto>> getProdutos() {
+       return new ResponseEntity<>(produtoService.findAll(), HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getById(@PathVariable Long id) {
+        Optional<Produto> produto = produtoRepository.findById(id);
+        if(produto.isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Id não encontrado");
+        }
+        return ResponseEntity.ok(produto.get());
     }
 
     @PostMapping
-    public ResponseEntity<Produto> salvar(@RequestBody @Valid Produto produto) {
+    public ResponseEntity<Produto> postProduto(@Valid @RequestBody Produto produto) {
        return ResponseEntity.status(HttpStatus.CREATED).body(produtoRepository.save(produto));
     }
 
     @PutMapping
-    public ResponseEntity<?> atualizarCategoria(@Valid @RequestBody Produto produto) {
+    public ResponseEntity<?> updateCategoria(@Valid @RequestBody Produto produto) {
         if(produtoRepository.existsById(produto.getId())) {
-            return ResponseEntity.status(HttpStatus.CREATED).body(produtoRepository.save(produto));
+            return ResponseEntity.status(HttpStatus.OK).body(produtoRepository.save(produto));
         }else{
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Id não encontrado");
         }
