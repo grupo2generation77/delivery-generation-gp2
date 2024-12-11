@@ -162,10 +162,28 @@ Classifica os produtos, como "Bebidas", "Sobremesas" ou "Pratos Principais".
    cd <NOME_DO_PROJETO>
 ---
 
-## 👨‍💻 Contribuidores
+## 👨‍💻 Contribuidores e suas contribuições
 
-- [Lucas](https://github.com/Lucassai): Implementação dos endpoints de criação.
-- [Matheus](https://github.com/MatheusSPQ): Implementação dos endpoints de atualização.
-- [Ivan](https://github.com/IJNavi): Implementação dos endpoints de exclusão.
-- [Nina](https://github.com/Ninaraquel): Implementação da recomendação de produtos saudáveis.
-- [Jaqueline](https://github.com/Jaquelinevalle): Implementação da listagem de dados.
+
+**[Ivan](https://github.com/IJNavi)** 🎯  
+- Atuou como **PO**, ajudando a desenvolver o backlog junto à equipe.  
+- Realizou as tasks relacionadas a **delete**.
+
+**[Matheus](https://github.com/MatheusSPQ)** 🛠️  
+- Criou a base do projeto e configurou o **GitHub** (criação de issues, mesclagem de branchs, e documentação).  
+- Corrigiu bugs e propôs padrões a serem seguidos para mesclagem e pull requests.  
+- Atuou como um **Scrum Master**, auxiliando nas tasks e no gerenciamento do **kanban**.  
+- Realizou as tasks relacionadas a **update**.
+
+**[Lucas](https://github.com/Lucassai)** 🔧  
+- Testou, corrigiu e atualizou problemas na **dev**, garantindo a qualidade do código e o funcionamento correto.  
+- Realizou as tasks relacionadas a **post**.
+
+**[Nina](https://github.com/Ninaraquel)** 🌱  
+- Abraçou o desafio de criar funções adicionais de busca por **produtos saudáveis**.  
+- Propôs ideias para novas **features** relacionadas à recomendação.
+
+**[Jaqueline](https://github.com/Jaquelinevalle)** 📄  
+- Realizou as tasks relacionadas a **get**.  
+- Revisou e garantiu que as **regras de negócios** foram de fato implementadas.
+
