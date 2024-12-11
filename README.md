@@ -1,17 +1,17 @@
 # 🍔 API de Delivery de Comida
 
-## 📝 Descrição  
-Esta é uma **API REST** para um sistema de **delivery de comida**. O sistema gerencia:
-- **Usuários**, que podem realizar pedidos.
-- **Produtos** (itens disponíveis para compra).
-- **Categorias**, que classificam os produtos.
+## 📝 Descrição
+Esta é uma **API REST** para um sistema de **delivery de comida**. O sistema gerencia:  
+- **Usuários**, que podem realizar pedidos.  
+- **Produtos**, itens disponíveis para compra.  
+- **Pedidos**, que representam o histórico de compras dos usuários.  
 
 Funcionalidades incluem operações **CRUD** para cada entidade e uma recomendação de produtos saudáveis.  
-Esta API está pronta para ser consumida por outros sistemas ou aplicativos.
+Esta API está pronta para ser consumida por outros sistemas ou aplicativos.  
 
 ---
 
-## 🛠️ Tecnologias Utilizadas  
+## 🛠️ Tecnologias Utilizadas
 - **Java 17**: Linguagem de programação principal.  
 - **Spring Boot**: Framework para desenvolvimento rápido de aplicações.  
 - **Spring Data JPA**: Para mapeamento objeto-relacional.  
@@ -39,61 +39,61 @@ erDiagram
         String descricao
         Long valor
     }
-    CATEGORIA {
+    PEDIDO {
         Long id
-        String nome
-        String descricao
-        Boolean saudavel
+        Long usuarioId
+        Long produtoId
     }
-    USUARIO ||--o{ PRODUTO : pedidos
-    PRODUTO }o--|| CATEGORIA : pertence
+    USUARIO ||--o{ PEDIDO : realiza
+    PRODUTO ||--o{ PEDIDO : pertence
 ```
----
+# 📂 Estrutura do Projeto
 
-## 📂 Estrutura do Projeto  
+## 🧑‍💻 Entidades e Relacionamentos
 
-### 🧑‍💻 Entidades e Relacionamentos  
+### 1️⃣ Usuário
+Representa os usuários do sistema, que podem realizar pedidos.
 
-#### 1️⃣ **Usuário**
-Representa os usuários do sistema, que podem realizar pedidos.  
 **Atributos**:  
 - `id (Long)`: Identificador único.  
 - `nome (String)`: Nome do usuário.  
 - `email (String)`: Endereço de e-mail do usuário.  
 - `foto (String)`: URL da foto do usuário.  
 - `senha (String)`: Senha para autenticação.  
-- `pedidos (List<Produto>)`: Lista de produtos pedidos pelo usuário.  
 
 **Relacionamento**:  
-- Um usuário pode ter vários produtos no histórico de pedidos.  
+- Um usuário pode realizar vários pedidos.  
 
-#### 2️⃣ **Produto**
-Representa os itens disponíveis para entrega.  
+---
+
+### 2️⃣ Produto
+Representa os itens disponíveis para entrega.
+
 **Atributos**:  
 - `id (Long)`: Identificador único.  
 - `nome (String)`: Nome do produto.  
 - `descricao (String)`: Descrição detalhada do produto.  
 - `valor (Long)`: Preço do produto.  
-- `categoria (Categoria)`: Categoria a que o produto pertence.  
 
 **Relacionamento**:  
-- Um produto pertence a uma categoria.  
-
-#### 3️⃣ **Categoria**
-Classifica os produtos, como "Bebidas", "Sobremesas" ou "Pratos Principais".  
-**Atributos**:  
-- `id (Long)`: Identificador único.  
-- `nome (String)`: Nome da categoria.  
-- `descricao (String)`: Descrição detalhada da categoria.  
-- `saudavel (Boolean)`: Indica se a categoria é saudável ou não.  
-- `produtos (List<Produto>)`: Lista de produtos na categoria.  
-
-**Relacionamento**:  
-- Uma categoria pode ter vários produtos.  
+- Um produto pode estar em vários pedidos.  
 
 ---
 
-## 🌟 Funcionalidades  
+### 3️⃣ Pedido
+Representa o histórico de compras de um usuário.
+
+**Atributos**:  
+- `id (Long)`: Identificador único.  
+- `usuarioId (Long)`: Referência ao usuário que realizou o pedido.  
+- `produtoId (Long)`: Referência ao produto do pedido.  
+
+**Relacionamento**:  
+- Um pedido pertence a um único usuário e um único produto.  
+
+---
+
+## 🌟 Funcionalidades
 
 ### 🔑 CRUD de Usuários
 - **Criar**: Cadastro de novos usuários.  
@@ -107,45 +107,42 @@ Classifica os produtos, como "Bebidas", "Sobremesas" ou "Pratos Principais".
 - **Atualizar**: Alterar informações de um produto existente.  
 - **Excluir**: Remover um produto do catálogo.  
 
-### 🗂️ CRUD de Categorias
-- **Criar**: Adicionar novas categorias ao sistema.  
-- **Ler**: Recuperar informações de categorias por ID ou listar todas.  
-- **Atualizar**: Alterar informações de uma categoria existente.  
-- **Excluir**: Remover uma categoria do sistema.  
-
-### 🥗 Recomendação de Produtos Saudáveis
-- **Listar Produtos Saudáveis**: Endpoint que retorna todos os produtos pertencentes a categorias marcadas como "saudáveis".  
+### 📦 CRUD de Pedidos
+- **Criar**: Registrar um novo pedido.  
+- **Ler**: Recuperar informações de pedidos por ID ou listar todos.  
+- **Atualizar**: Alterar informações de um pedido existente.  
+- **Excluir**: Cancelar um pedido do sistema.  
 
 ---
 
-## 🔗 Estrutura dos Endpoints  
+## 🔗 Estrutura dos Endpoints
 
-### **Usuário**
+### Usuário
 | Método HTTP | Endpoint          | Descrição                      |
 |-------------|-------------------|--------------------------------|
 | POST        | `/usuarios`       | Cadastrar novo usuário         |
 | GET         | `/usuarios`       | Listar todos os usuários       |
 | GET         | `/usuarios/{id}`  | Buscar usuário por ID          |
-| PUT         | `/usuarios/{id}`  | Atualizar usuário por ID       |
+| PUT         | `/usuarios     `  | Atualizar usuário por ID       |
 | DELETE      | `/usuarios/{id}`  | Remover usuário por ID         |
 
-### **Produto**
+### Produto
 | Método HTTP | Endpoint          | Descrição                      |
 |-------------|-------------------|--------------------------------|
 | POST        | `/produtos`       | Adicionar novo produto         |
 | GET         | `/produtos`       | Listar todos os produtos       |
 | GET         | `/produtos/{id}`  | Buscar produto por ID          |
-| PUT         | `/produtos/{id}`  | Atualizar produto por ID       |
+| PUT         | `/produtos     `  | Atualizar produto por ID       |
 | DELETE      | `/produtos/{id}`  | Remover produto por ID         |
 
-### **Categoria**
+### Pedido
 | Método HTTP | Endpoint          | Descrição                      |
 |-------------|-------------------|--------------------------------|
-| POST        | `/categorias`     | Adicionar nova categoria       |
-| GET         | `/categorias`     | Listar todas as categorias     |
-| GET         | `/categorias/{id}`| Buscar categoria por ID        |
-| PUT         | `/categorias/{id}`| Atualizar categoria por ID     |
-| DELETE      | `/categorias/{id}`| Remover categoria por ID       |
+| POST        | `/pedidos`        | Registrar novo pedido          |
+| GET         | `/pedidos`        | Listar todos os pedidos        |
+| GET         | `/pedidos/{id}`   | Buscar pedido por ID           |
+| PUT         | `/pedidos     `   | Atualizar pedido por ID        |
+| DELETE      | `/pedidos/{id}`   | Cancelar pedido por ID         |
 
 ### **Recomendação**
 | Método HTTP | Endpoint                | Descrição                      |
@@ -154,14 +151,13 @@ Classifica os produtos, como "Bebidas", "Sobremesas" ou "Pratos Principais".
 
 ---
 
-## 🚀 Como Executar o Projeto  
+## 🚀 Como Executar o Projeto
 
 1. **Clone o repositório**:  
    ```bash
    git clone <URL_DO_REPOSITORIO>
    cd <NOME_DO_PROJETO>
 ---
-
 ## 👨‍💻 Contribuidores
 
 - [Lucas](https://github.com/Lucassai): Implementação dos endpoints de criação.
